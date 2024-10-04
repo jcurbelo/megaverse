@@ -1,4 +1,4 @@
-import { BatchOptions } from '../types/api';
+import { BatchOptions } from '../types/helpers';
 
 export const delay = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms));
