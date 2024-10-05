@@ -6,18 +6,6 @@ import { IMapElement } from '../interfaces/IMapElement';
 import { IMapElementFactory } from '../interfaces/IMapElementFactory';
 import { MapCoordinate } from '../types/api';
 
-type ElementClass =
-  | typeof Space
-  | typeof Polyanet
-  | typeof Soloon
-  | typeof Cometh;
-
-type ElementWithEndpoint = Extract<
-  InstanceType<ElementClass>,
-  { endpoint: string }
->;
-export type MapElementEndpoints = ElementWithEndpoint['endpoint'] | undefined;
-
 export const elementsCreatorFns = {
   SPACE: (coordinate: MapCoordinate) => new Space(coordinate, 'SPACE'),
   POLYANET: (coordinate: MapCoordinate) => new Polyanet(coordinate, 'POLYANET'),

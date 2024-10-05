@@ -1,7 +1,4 @@
-import {
-  MapElementEndpoints,
-  MapElementType,
-} from '../factories/mapElementFactory';
+import { MapElementType } from '../factories/mapElementFactory';
 import { Map } from '../elements/map';
 
 export type MapResponse = {
@@ -21,5 +18,5 @@ export type MapCoordinate = {
 
 export type MapElementRequest = {
   element: MapCoordinate & Record<string, string | number>;
-  apiEndpoint: MapElementEndpoints;
+  apiEndpoint: string;
 };

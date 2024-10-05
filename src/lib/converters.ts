@@ -9,7 +9,7 @@ import { MapElementRequest } from '../types/api';
 export class Converter implements IConverter {
   constructor(private factory: IMapElementFactory) {}
 
-  buildMap(goal: MapElementType[][]): Map {
+  buildMap(goal: (MapElementType | string)[][]): Map {
     return goal.map((row, rowIdx) =>
       row.map((elementType, columnIdx) =>
         this.factory.createElement(
