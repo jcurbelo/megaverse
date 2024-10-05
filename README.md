@@ -45,6 +45,18 @@ The project is organized into a modular structure for clarity and maintainabilit
 src/
 ├── api/
 │   └── map.ts           # API calls related to map operations
+├── elements/
+│   ├── baseElement.ts   # Base class for all map elements
+│   ├── cometh.ts        # Cometh element class
+│   ├── map.ts           # Map-related functionality
+│   ├── polyanet.ts      # Polyanet element class
+│   ├── soloon.ts        # Soloon element class
+│   └── space.ts         # Space element class
+├── factories/
+│   └── mapElementFactory.ts  # Factory for creating map elements
+├── interfaces/
+│   ├── IMapElement.ts   # Interface for map elements
+│   └── IMapElementFactory.ts # Interface for map element factory
 ├── lib/
 │   ├── converters.ts    # Utility functions for data conversion
 │   ├── env.ts           # Environment variable management
@@ -57,11 +69,14 @@ src/
 ```
 
 - `api/`: Contains modules for interacting with external APIs.
+- `elements/`: Contains classes for different map elements.
+- `factories/`: Houses the factory for creating map elements.
+- `interfaces/`: Defines interfaces for map elements and factories.
 - `lib/`: Houses utility functions and helpers used across the project.
 - `types/`: Defines TypeScript interfaces and types used throughout the application.
-- `generateMap.ts`: The main entry point for the map generation process.
+- `generateMap.ts:` The main entry point for the map generation process.
 
-This structure allows for easy expansion and maintenance of the project, with clear separation of concerns between API interactions, utility functions, and type definitions.
+This structure allows for easy expansion and maintenance of the project, with clear separation of concerns between API interactions, element definitions, factories, utility functions, and type definitions.
 
 Key features include:
 
@@ -69,6 +84,18 @@ Key features include:
 - ESLint and Prettier for code quality and formatting
 - Modular architecture for easy expansion and maintenance
 - Efficient handling of API rate limits
+- Factory pattern for creating map elements
+- SOLID principles adherence
+
+## Adding New Map Elements
+
+To add a new map element:
+
+1. Create a new class in the `elements/` directory, extending the `BaseMapElement` class.
+2. Add the new element type to the `elementsCreatorFns` object in `src/factories/mapElementFactory.ts`.
+3. The `MapElementType` will be automatically inferred from the `elementsCreatorFns` object.
+
+This design allows for easy extension of the map element types without modifying multiple files across the project.
 
 ## Environment Variables
 

@@ -1,17 +1,8 @@
-export type MapGoalElementType =
-  | 'SPACE'
-  | 'POLYANET'
-  | 'WHITE_SOLOON'
-  | 'BLUE_SOLOON'
-  | 'RED_SOLOON'
-  | 'PURPLE_SOLOON'
-  | 'RIGHT_COMETH'
-  | 'LEFT_COMETH'
-  | 'UP_COMETH'
-  | 'DOWN_COMETH';
-
-export type MapGoal = MapGoalElementType[][];
-export type Map = MapElement[][];
+import {
+  MapElementEndpoints,
+  MapElementType,
+} from '../factories/mapElementFactory';
+import { Map } from '../elements/map';
 
 export type MapResponse = {
   map: {
@@ -20,32 +11,15 @@ export type MapResponse = {
 };
 
 export type MapGoalResponse = {
-  goal: MapGoal;
+  goal: MapElementType[][];
 };
 
-export interface MapCoordinate {
+export type MapCoordinate = {
   row: number;
   column: number;
-}
-
-export interface MapElement extends MapCoordinate {}
-
-export interface Polyanet extends MapElement {}
-
-export type SoloonColor = 'blue' | 'red' | 'purple' | 'white';
-
-export interface Soloon extends MapElement {
-  color: SoloonColor;
-}
-
-export type ComethDirection = 'up' | 'down' | 'right' | 'left';
-export interface Cometh extends MapElement {
-  direction: ComethDirection;
-}
-
-export type MapElementEndpoints = 'polyanets' | 'soloons' | 'comeths';
+};
 
 export type MapElementRequest = {
-  element: MapElement;
-  apiEndpoint: string;
+  element: MapCoordinate & Record<string, string | number>;
+  apiEndpoint: MapElementEndpoints;
 };
