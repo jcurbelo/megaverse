@@ -6,4 +6,7 @@ export class Space extends BaseMapElement {
   public getRequest(): MapElementRequest {
     return undefined;
   }
+  public check(): boolean {
+    return true;
+  }
 }

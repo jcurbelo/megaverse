@@ -21,14 +21,21 @@ export type MapElementEndpoints = ElementWithEndpoint['endpoint'] | undefined;
 export const elementsCreatorFns = {
   SPACE: (coordinate: MapCoordinate) => new Space(coordinate, 'SPACE'),
   POLYANET: (coordinate: MapCoordinate) => new Polyanet(coordinate, 'POLYANET'),
-  WHITE_SOLOON: (coordinate: MapCoordinate) => new Soloon(coordinate, 'WHITE_SOLOON'),
-  BLUE_SOLOON: (coordinate: MapCoordinate) => new Soloon(coordinate, 'BLUE_SOLOON'),
-  RED_SOLOON: (coordinate: MapCoordinate) => new Soloon(coordinate, 'BLUE_SOLOON'),
-  PURPLE_SOLOON: (coordinate: MapCoordinate) => new Soloon(coordinate, 'PURPLE_SOLOON'),
-  RIGHT_COMETH: (coordinate: MapCoordinate) => new Cometh(coordinate, 'RIGHT_COMETH'),
-  LEFT_COMETH: (coordinate: MapCoordinate) => new Cometh(coordinate, 'LEFT_COMETH'),
+  WHITE_SOLOON: (coordinate: MapCoordinate) =>
+    new Soloon(coordinate, 'WHITE_SOLOON'),
+  BLUE_SOLOON: (coordinate: MapCoordinate) =>
+    new Soloon(coordinate, 'BLUE_SOLOON'),
+  RED_SOLOON: (coordinate: MapCoordinate) =>
+    new Soloon(coordinate, 'BLUE_SOLOON'),
+  PURPLE_SOLOON: (coordinate: MapCoordinate) =>
+    new Soloon(coordinate, 'PURPLE_SOLOON'),
+  RIGHT_COMETH: (coordinate: MapCoordinate) =>
+    new Cometh(coordinate, 'RIGHT_COMETH'),
+  LEFT_COMETH: (coordinate: MapCoordinate) =>
+    new Cometh(coordinate, 'LEFT_COMETH'),
   UP_COMETH: (coordinate: MapCoordinate) => new Cometh(coordinate, 'UP_COMETH'),
-  DOWN_COMETH: (coordinate: MapCoordinate) => new Cometh(coordinate, 'DOWN_COMETH'),
+  DOWN_COMETH: (coordinate: MapCoordinate) =>
+    new Cometh(coordinate, 'DOWN_COMETH'),
 } as const;
 
 export type MapElementType = keyof typeof elementsCreatorFns;

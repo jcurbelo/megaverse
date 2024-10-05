@@ -15,6 +15,10 @@ export class Cometh extends BaseMapElement {
     };
   }
 
+  public check(): boolean {
+    return true;
+  }
+
   constructor(
     public coordinate: MapCoordinate,
     public elementType: MapElementType
