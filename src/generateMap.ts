@@ -7,21 +7,35 @@ import { MapElementRequest } from './types/api';
 const generateMap = async () => {
   console.log('Starting map generation...');
 
-  const map = await getGoalMap();
+  const { goal } = await getGoalMap();
   console.log('Goal map retrieved');
 
   const factory = new MapElementFactory();
   const converter = new Converter(factory);
 
-  const requests = converter.getMapElementRequests(map.goal);
+  const map = converter.buildMap(goal);
+
+  const isMapValid = converter.validateMap(map);
+
+  if (!isMapValid) {
+    throw new Error('Invalid map.');
+  }
+
+  console.log('Map is valid');
+
+  const requests = converter.getMapElementRequests(map);
   console.log(`Total elements to be created: ${requests.length}`);
 
   console.log('Starting batch execution...');
 
   await batchExecute(requests, async (request: MapElementRequest) => {
-    console.log(`Creating element at (${request.element.row}, ${request.element.column})`);
+    console.log(
+      `Creating element at (${request.element.row}, ${request.element.column})`
+    );
     await createMapElement(request);
-    console.log(`Element created at (${request.element.row}, ${request.element.column})`);
+    console.log(
+      `Element created at (${request.element.row}, ${request.element.column})`
+    );
   });
 };
 

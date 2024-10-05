@@ -44,27 +44,28 @@ The project is organized into a modular structure for clarity and maintainabilit
 ```bash
 src/
 ├── api/
-│   └── map.ts           # API calls related to map operations
+│   └── map.ts                # API calls related to map operations
 ├── elements/
-│   ├── baseElement.ts   # Base class for all map elements
-│   ├── cometh.ts        # Cometh element class
-│   ├── map.ts           # Map-related functionality
-│   ├── polyanet.ts      # Polyanet element class
-│   ├── soloon.ts        # Soloon element class
-│   └── space.ts         # Space element class
+│   ├── baseElement.ts        # Base class for all map elements
+│   ├── cometh.ts             # ☄comETH element class
+│   ├── map.ts                # Map-related functionality
+│   ├── polyanet.ts           # 🪐POLYanet element class
+│   ├── soloon.ts             # 🌙SOLoon element class
+│   └── space.ts              # 🌌Space element class
 ├── factories/
 │   └── mapElementFactory.ts  # Factory for creating map elements
 ├── interfaces/
-│   ├── IMapElement.ts   # Interface for map elements
+│   ├── IConverter.ts         # Interface for converter
+│   ├── IMapElement.ts        # Interface for map elements
 │   └── IMapElementFactory.ts # Interface for map element factory
 ├── lib/
-│   ├── converters.ts    # Utility functions for data conversion
-│   ├── env.ts           # Environment variable management
-│   └── helpers.ts       # General helper functions
+│   ├── converters.ts         # Converter implementation
+│   ├── env.ts                # Environment variable management
+│   └── helpers.ts            # General helper functions
 ├── types/
-│   ├── api.ts           # Type definitions for API-related structures
-│   └── helpers.ts       # Type definitions for helper functions
-└── generateMap.ts       # Main script for map generation
+│   ├── api.ts                # Type definitions for API-related structures
+│   └── helpers.ts            # Type definitions for helper functions
+└── generateMap.ts            # Main script for map generation
 
 ```
 
@@ -85,6 +86,7 @@ Key features include:
 - Modular architecture for easy expansion and maintenance
 - Efficient handling of API rate limits
 - Factory pattern for creating map elements
+- Rule-based system for map validation
 - SOLID principles adherence
 
 ## Adding New Map Elements
@@ -94,6 +96,14 @@ To add a new map element:
 1. Create a new class in the `elements/` directory, extending the `BaseMapElement` class.
 2. Add the new element type to the `elementsCreatorFns` object in `src/factories/mapElementFactory.ts`.
 3. The `MapElementType` will be automatically inferred from the `elementsCreatorFns` object.
+
+## Map Validation
+
+The project includes a rule-based system for validating map elements:
+
+- Each element class implements a `check(map: Map)` method that defines its placement rules.
+- The `Converter` class includes a `validateMap(map: Map)` method that checks all elements against their rules.
+- Map validation is performed before element creation in the `generateMap` function.
 
 This design allows for easy extension of the map element types without modifying multiple files across the project.
 

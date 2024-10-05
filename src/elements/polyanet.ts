@@ -10,6 +10,9 @@ export class Polyanet extends BaseMapElement {
       apiEndpoint: this.endpoint,
     };
   }
+  public check(): boolean {
+    return true;
+  }
   constructor(
     public coordinate: MapCoordinate,
     public elementType: MapElementType
