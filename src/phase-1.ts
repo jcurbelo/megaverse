@@ -6,10 +6,7 @@ const phaseOne = async () => {
   const map = await getGoalMap();
   const requests = getMapElementRequests(map.goal);
 
-  await batchExecute(requests, createMapElement, {
-    batchSize: 2,
-    delayMs: 2000,
-  });
+  await batchExecute(requests, createMapElement);
 };
 
 phaseOne()
