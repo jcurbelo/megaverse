@@ -6,6 +6,7 @@
     "clean": "rimraf dist",
     "build": "pnpm run clean && tsup",
     "run:phase-1": "pnpm run build && node ./dist/phase-1.js",
+    "run:phase-2": "pnpm run build && node ./dist/phase-2.js",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "packageManager": "pnpm@8.15.6",

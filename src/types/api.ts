@@ -1,5 +1,16 @@
-export type MapElement = 'SPACE' | 'POLYANET' | 'SOLOON' | 'COMETH';
+export type MapGoalElementType =
+  | 'SPACE'
+  | 'POLYANET'
+  | 'WHITE_SOLOON'
+  | 'BLUE_SOLOON'
+  | 'RED_SOLOON'
+  | 'PURPLE_SOLOON'
+  | 'RIGHT_COMETH'
+  | 'LEFT_COMETH'
+  | 'UP_COMETH'
+  | 'DOWN_COMETH';
 
+export type MapGoal = MapGoalElementType[][];
 export type Map = MapElement[][];
 
 export type MapResponse = {
@@ -9,29 +20,32 @@ export type MapResponse = {
 };
 
 export type MapGoalResponse = {
-  goal: Map;
+  goal: MapGoal;
 };
 
-export type MapCoordinate = {
+export interface MapCoordinate {
   row: number;
   column: number;
-};
+}
 
-export type MapElementRequest = MapCoordinate;
+export interface MapElement extends MapCoordinate {}
 
-export type PolyanetRequest = MapElementRequest;
+export interface Polyanet extends MapElement {}
 
 export type SoloonColor = 'blue' | 'red' | 'purple' | 'white';
 
-export type SoloonRequest = MapElementRequest & {
+export interface Soloon extends MapElement {
   color: SoloonColor;
-};
+}
 
-export type ComethRequest = MapElementRequest & {
-  direction: 'up' | 'down' | 'right' | 'left';
-};
+export type ComethDirection = 'up' | 'down' | 'right' | 'left';
+export interface Cometh extends MapElement {
+  direction: ComethDirection;
+}
 
-export type BatchOptions = {
-  batchSize?: number;
-  delayMs?: number;
+export type MapElementEndpoints = 'polyanets' | 'soloons' | 'comeths';
+
+export type MapElementRequest = {
+  element: MapElement;
+  apiEndpoint: string;
 };

@@ -1,6 +1,6 @@
 import ky from 'ky';
 import { Env } from '../lib/env';
-import { MapGoalResponse, MapResponse, PolyanetRequest } from '../types/api';
+import { MapElementRequest, MapGoalResponse, MapResponse } from '../types/api';
 
 export const getGoalMap = () =>
   ky<MapGoalResponse>(
@@ -10,12 +10,16 @@ export const getGoalMap = () =>
 export const getMap = () =>
   ky<MapResponse>(`${Env.BASE_API_URL}/map/${Env.CANDIDATE_ID}`).json();
 
-export const createPolyanet = (request: PolyanetRequest) =>
-  ky.post(`${Env.BASE_API_URL}/polyanets`, {
-    json: { ...request, candidateId: Env.CANDIDATE_ID },
+export const createMapElement = (request: MapElementRequest) =>
+  ky.post(`${Env.BASE_API_URL}/${request.apiEndpoint}`, {
+    json: { ...request.element, candidateId: Env.CANDIDATE_ID },
   });
 
-export const deletePolyanet = (request: PolyanetRequest) =>
-  ky.delete(`${Env.BASE_API_URL}/polyanets`, {
-    json: { ...request, candidateId: Env.CANDIDATE_ID },
+export const deleteMapElement = (request: MapElementRequest) =>
+  ky.delete(`${Env.BASE_API_URL}/${request.apiEndpoint}`, {
+    json: {
+      row: request.element.row,
+      column: request.element.column,
+      candidateId: Env.CANDIDATE_ID,
+    },
   });
