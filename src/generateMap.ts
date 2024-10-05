@@ -2,15 +2,15 @@ import { createMapElement, getGoalMap } from './api/map';
 import { getMapElementRequests } from './lib/converters';
 import { batchExecute } from './lib/helpers';
 
-const phaseTwo = async () => {
+const generateMap = async () => {
   const map = await getGoalMap();
   const requests = getMapElementRequests(map.goal);
 
   await batchExecute(requests, createMapElement);
 };
 
-phaseTwo()
+generateMap()
   .then(() => {
-    console.log('Phase 2 completed');
+    console.log('Map generated!');
   })
   .catch((error) => console.error('Error:', error));
