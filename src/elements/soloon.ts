@@ -19,6 +19,8 @@ export class Soloon extends BaseMapElement {
 
   public check(map: Map): boolean {
     const { row, column } = this.coordinate;
+    const mapHeight = map.length;
+    const mapWidth = map[0].length;
 
     const adjacentPositions = [
       [row - 1, column],
@@ -27,9 +29,9 @@ export class Soloon extends BaseMapElement {
       [row, column + 1],
     ];
 
-    return adjacentPositions.some(
-      ([r, c]) => map[r] && map[r][c] instanceof Polyanet
-    );
+    return adjacentPositions
+      .filter(([r, c]) => r >= 0 && r < mapHeight && c >= 0 && c < mapWidth) // boundary check
+      .some(([r, c]) => map[r][c] instanceof Polyanet);
   }
 
   constructor(

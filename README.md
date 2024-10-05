@@ -22,6 +22,7 @@ pnpm install
 This project uses pnpm for package management and includes the following scripts:
 
 - `pnpm build`: Cleans the dist directory and builds the project
+- `pnpm test`: Runs the test suite
 - `pnpm format`: Formats all files using Prettier
 - `pnpm generate:map`: Builds the project and runs the map generation script
 
@@ -34,6 +35,14 @@ pnpm generate:map
 ```
 
 This script will create a map based on predefined parameters and interact with an external API to populate it.
+
+To run tests:
+
+```bash
+pnpm test
+```
+
+This command runs the tests suite, ensuring the map generation and validation work correctly.
 
 ## Project Structure
 
@@ -66,6 +75,8 @@ src/
 │   ├── api.ts                # Type definitions for API-related structures
 │   └── helpers.ts            # Type definitions for helper functions
 └── generateMap.ts            # Main script for map generation
+
+test/                          # Tests
 
 ```
 
