@@ -1,10 +1,9 @@
-import { Converter } from '../src/lib/converters';
+import { MapService } from '../src/services/mapService';
 import { MapElementType } from '../src/factories/mapElementFactory';
 import { CustomMapElementFactory } from './factories/customMapElementFactory';
 
 describe('Map Extension', () => {
-  const factory = new CustomMapElementFactory();
-  const converter = new Converter(factory);
+  const mapService = new MapService(new CustomMapElementFactory());
 
   it('should allow adding custom elements', () => {
     const customMap: (MapElementType | 'CUSTOM_ELEMENT')[][] = [
@@ -13,8 +12,8 @@ describe('Map Extension', () => {
       ['POLYANET', 'SPACE', 'CUSTOM_ELEMENT'],
     ];
 
-    const map = converter.buildMap(customMap);
-    expect(converter.validateMap(map)).toBe(true);
+    const map = mapService.buildMap(customMap);
+    expect(mapService.validateMap(map)).toBe(true);
   });
 
   it('should validate custom element rules', () => {
@@ -24,7 +23,7 @@ describe('Map Extension', () => {
       ['SPACE', 'POLYANET', 'CUSTOM_ELEMENT'],
     ];
 
-    const map = converter.buildMap(invalidCustomMap);
-    expect(converter.validateMap(map)).toBe(false);
+    const map = mapService.buildMap(invalidCustomMap);
+    expect(mapService.validateMap(map)).toBe(false);
   });
 });

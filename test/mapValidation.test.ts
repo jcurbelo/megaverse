@@ -1,19 +1,18 @@
-import { Converter } from '../src/lib/converters';
+import { MapService } from '../src/services/mapService';
 import { MapElementFactory } from '../src/factories/mapElementFactory';
 import { validMap } from './fixtures/validMap';
 import { invalidMap } from './fixtures/invalidMap';
 
 describe('Map Validation', () => {
-  const factory = new MapElementFactory();
-  const converter = new Converter(factory);
+  const mapService = new MapService(new MapElementFactory());
 
   it('should validate a correct map', () => {
-    const map = converter.buildMap(validMap);
-    expect(converter.validateMap(map)).toBe(true);
+    const map = mapService.buildMap(validMap);
+    expect(mapService.validateMap(map)).toBe(true);
   });
 
   it('should invalidate an incorrect map', () => {
-    const map = converter.buildMap(invalidMap);
-    expect(converter.validateMap(map)).toBe(false);
+    const map = mapService.buildMap(invalidMap);
+    expect(mapService.validateMap(map)).toBe(false);
   });
 });

@@ -64,13 +64,14 @@ src/
 ├── factories/
 │   └── mapElementFactory.ts  # Factory for creating map elements
 ├── interfaces/
-│   ├── IConverter.ts         # Interface for converter
 │   ├── IMapElement.ts        # Interface for map elements
-│   └── IMapElementFactory.ts # Interface for map element factory
+│   ├── IMapElementFactory.ts # Interface for map element factory
+│   └── IMapService.ts        # Interface for map service
 ├── lib/
-│   ├── converters.ts         # Converter implementation
 │   ├── env.ts                # Environment variable management
 │   └── helpers.ts            # General helper functions
+├── services/
+│   └── mapService.ts         # Service for map operations
 ├── types/
 │   ├── api.ts                # Type definitions for API-related structures
 │   └── helpers.ts            # Type definitions for helper functions
@@ -80,13 +81,14 @@ test/                          # Tests
 
 ```
 
-- `api/`: Contains modules for interacting with external APIs.
-- `elements/`: Contains classes for different map elements.
-- `factories/`: Houses the factory for creating map elements.
-- `interfaces/`: Defines interfaces for map elements and factories.
-- `lib/`: Houses utility functions and helpers used across the project.
-- `types/`: Defines TypeScript interfaces and types used throughout the application.
-- `generateMap.ts:` The main entry point for the map generation process.
+- `api/`: Modules for interacting with external APIs.
+- `elements/`: Classes for different map elements.
+- `factories/`: Factory for creating map elements.
+- `interfaces/`: Interfaces for map elements, factories and services.
+- `lib/`: Utility functions and helpers used across the project.
+- `services/`: Service for map operations.
+- `types/`: Types used throughout the application.
+- `generateMap.ts:`Main entry point for the map generation process.
 
 This structure allows for easy expansion and maintenance of the project, with clear separation of concerns between API interactions, element definitions, factories, utility functions, and type definitions.
 
@@ -113,7 +115,7 @@ To add a new map element:
 The project includes a rule-based system for validating map elements:
 
 - Each element class implements a `check(map: Map)` method that defines its placement rules.
-- The `Converter` class includes a `validateMap(map: Map)` method that checks all elements against their rules.
+- The `MapService` service includes a `validateMap(map: Map)` method that checks all elements against their rules.
 - Map validation is performed before element creation in the `generateMap` function.
 
 This design allows for easy extension of the map element types without modifying multiple files across the project.
