@@ -4,3 +4,8 @@ export type BatchOptions = {
   initialRetryDelay?: number;
   maxRetries?: number;
 };
+
+export type ErrorResult<T> = {
+  item: T;
+  error: unknown;
+};

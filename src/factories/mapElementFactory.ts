@@ -14,7 +14,7 @@ export const elementsCreatorFns = {
   BLUE_SOLOON: (coordinate: MapCoordinate) =>
     new Soloon(coordinate, 'BLUE_SOLOON'),
   RED_SOLOON: (coordinate: MapCoordinate) =>
-    new Soloon(coordinate, 'BLUE_SOLOON'),
+    new Soloon(coordinate, 'RED_SOLOON'),
   PURPLE_SOLOON: (coordinate: MapCoordinate) =>
     new Soloon(coordinate, 'PURPLE_SOLOON'),
   RIGHT_COMETH: (coordinate: MapCoordinate) =>
