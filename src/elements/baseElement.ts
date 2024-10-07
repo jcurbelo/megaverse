@@ -8,7 +8,6 @@ export abstract class BaseMapElement implements IMapElement {
     public elementType: string
   ) {}
 
-  abstract endpoint?: string;
   abstract getRequest(): MapElementRequest;
   abstract check(map: Map): boolean;
 }

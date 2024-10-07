@@ -1,5 +1,4 @@
 import { Map } from '../elements/map';
-import { Space } from '../elements/space';
 import { MapElementType } from '../factories/mapElementFactory';
 import { IMapElementFactory } from '../interfaces/IMapElementFactory';
 import { IMapService } from '../interfaces/IMapService';
@@ -12,10 +11,6 @@ export class MapService implements IMapService {
     const requests: MapElementRequest[] = [];
     map.forEach((row) => {
       row.forEach((element) => {
-        // skip space
-        if (element instanceof Space) {
-          return;
-        }
         const request = element.getRequest();
         if (request) {
           requests.push(request);
