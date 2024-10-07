@@ -4,7 +4,6 @@ import { Map } from '../elements/map';
 export interface IMapElement {
   coordinate: MapCoordinate;
   elementType: string;
-  endpoint?: string;
-  getRequest(): MapElementRequest;
+  getRequest(): MapElementRequest | undefined;
   check(map: Map): boolean;
 }
